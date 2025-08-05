@@ -10,7 +10,7 @@ namespace Servico
 
         public Db()
         {
-            _con = new MySqlConnection("Server=127.0.0.1;Database=cadusuario;Uid=root;Pwd=SslMode=none;")
+            _con = new MySqlConnection("Server=127.0.0.1;Database=cadusuario;Uid=root;Pwd=SslMode=none;");
         }
 
         public List<UsuarioDTO> GetData()
@@ -36,10 +36,12 @@ namespace Servico
                 lisdaUsuarios.Add(UsuarioDTO);
             }
 
+            _con.Close();
+
             return lisdaUsuarios;
         }
 
-        public void AddUsuario(string nome)
+        public void AddUsuario(string nome, string sobrenome, string email)
         {
             _con.Open();
             _command = new MySqlCommand();
@@ -47,6 +49,12 @@ namespace Servico
 
             _command.CommandText = "INSERT INTO usuario (nome, sobrenome, email) VALUES (?nome, ?sobrenome, ?email)";
             _command.Parameters.Add("?nome", MySqlDbType.String).Value = nome;
+            _command.Parameters.Add("?sobrenome", MySqlDbType.String).Value = sobrenome;
+            _command.Parameters.Add("?email", MySqlDbType.String).Value = email;
+
+            _command.ExecuteNonQuery();
+
+            _con.Close();
         }
     }
 }
