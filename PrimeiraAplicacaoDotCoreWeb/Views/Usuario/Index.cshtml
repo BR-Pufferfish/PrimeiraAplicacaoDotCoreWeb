@@ -1,4 +1,8 @@
-﻿@{
+﻿
+@using PrimeiraAplicacaoDotCoreWeb.Models.Usuario
+@model List<Usuario>
+
+@{
     ViewData["Title"] = "Usuarios";
 }
 
@@ -15,10 +19,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Teste</td>
-            <td>Teste</td>
-            <td>teste@teste</td>
-        </tr>
+        @foreach(var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Nome</td>
+                <td>@usuario.Sobrenome</td>
+                <td>@usuario.Email</td>
+            </tr>
+        }
     </tbody>
 </table>

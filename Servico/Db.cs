@@ -10,10 +10,10 @@ namespace Servico
 
         public Db()
         {
-            _con = new MySqlConnection("Server=127.0.0.1;Database=cadusuario;Uid=root;Pwd=SslMode=none;");
+            _con = new MySqlConnection("Server=127.0.0.1;Database=cadusuario;Uid=root;Pwd=;SslMode=none;");
         }
 
-        public List<UsuarioDTO> GetData()
+        public List<UsuarioDTO> GetUsuario()
         {
             //para parar de criticar o GetData, coloquei o retorno de uma lista vazia -->  return [];
             _con.Open();
